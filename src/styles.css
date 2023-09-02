@@ -260,7 +260,7 @@ section#start p {
         display: none;
         transform: translateY(-200%);
     }
-    section {
+    section:not(#start) {
         scroll-margin-block-start: 10rem;
     }
 }
