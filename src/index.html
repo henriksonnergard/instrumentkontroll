@@ -6,13 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instrumentkontroll Bessmann AB</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body>
+<body x-data="{ openMenu : false }" :class="openMenu ? 'overflow-hidden' : 'overflow-visible' ">
+
+    <style>
+        [x-cloak] {
+          display: none !important;
+        }
+      </style>
+
     <div class="main-grid">
         <header>
+            <button class="header__mobile-toggle" @click="openMenu = !openMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mobile-toggle__icon--open" :class="openMenu ? 'display-none' : 'display-block' " x-cloak>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mobile-toggle__icon--close" :class="openMenu ? 'display-block' : 'display-none' " x-cloak>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>                      
+                <span class="mobile-toggle__text--open" :class="openMenu ? 'display-none' : 'display-block' " x-cloak>Meny</span>
+                <span class="mobile-toggle__text--close" :class="openMenu ? 'display-block' : 'display-none' " x-cloak>Stäng</span>
+            </button>
             <nav>
                 <a href="#start"><img class="logo" src="images/logo.svg" alt="Instrumentkontroll"></a>
-                <ul class="primary-nav">
+                <ul class="nav__items" :class="openMenu ? 'translate-y-0' : 'translate-y-full' " x-cloak>
                     <li>
                         <a href="#om-oss" data-list-no="01">Om oss</a>
                     </li>
@@ -103,7 +121,6 @@
                 </section>
             </div>
         </main>
-        </div>
     </div>
 </body>
 </html>
