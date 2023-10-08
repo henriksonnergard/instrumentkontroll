@@ -29,6 +29,7 @@ header {
     background-color: var(--indigo-12);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     max-height: 100vh;
     padding: var(--size-5);
     position: sticky;
@@ -134,8 +135,13 @@ main::before {
     isolation: isolate;
     z-index: 1;
 }
-section#start, section#om-oss, section#tjanster, section#kunder, section#kontakt {
-    height: 100dvh;
+section h2 {
+    border-block-end: 1px solid currentColor;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+}
+section#start, section#tjanster, section#kunder, section#om-oss, section#kontakt {
+    min-height: 100dvh;
     margin: 0 auto;
     padding: var(--size-fluid-3);
 }
@@ -170,6 +176,65 @@ section#start p {
     max-width: 65ch;
     text-shadow: 0 0 2rem var(--gray-12);
 }
+section#kunder, section#kontakt {
+    background-blend-mode: exclusion;
+    background-color: hsl(var(--indigo-12-hsl) / 90%);
+    background-image: 
+        linear-gradient(var(--indigo-12) 2.8000000000000003px,transparent 2.8000000000000003px),
+        linear-gradient(90deg, var(--indigo-12) 2.8000000000000003px, transparent 2.8000000000000003px),
+        linear-gradient(var(--indigo-12) 1.4000000000000001px, transparent 1.4000000000000001px),
+        linear-gradient(90deg, var(--indigo-12) 1.4000000000000001px, transparent 1.4000000000000001px)
+        ;
+    background-size: 70px 70px, 70px 70px, 14px 14px, 14px 14px;
+    background-position: -2.8000000000000003px -2.8000000000000003px, -2.8000000000000003px -2.8000000000000003px, -1.4000000000000001px -1.4000000000000001px, -1.4000000000000001px -1.4000000000000001px;
+    color: var(--gray-0);
+}
+.kontakt__form {
+    
+    width: 50%
+}
+.kontakt__form form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-3);
+}
+.kontakt__form input, .kontakt__form textarea {
+    border: 3px solid;
+    padding: var(--size-1) var(--size-2);
+}
+.kontakt__form textarea {
+    resize: vertical;
+}
+.kontakt__form button {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: var(--size-1);
+    text-transform: uppercase;
+    color: var(--gray-11);
+    cursor: pointer;
+    border: 3px solid;
+    padding: var(--size-1) var(--size-2);
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: all 0.1s ease;
+}
+.kontakt__form button:active {
+    box-shadow: 0px 0px 0px 0px;
+    transform: translate(5px, 5px);
+}
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-1);
+}
+.form-field label {
+    font-weight: 700;
+}
+
 .image-container {
     overflow: hidden;
 }
@@ -179,32 +244,42 @@ section#start p {
     object-position: 0 20%;
     width: 80%;
 }
+.flex-container {
+    display: flex;
+    gap: var(--size-3);
+    justify-content: space-between;
+}
+footer {
+    font-family: var(--font-mono);
+    padding: var(--size-fluid-3);
+    text-align: center;
+}
 
 .header__mobile-toggle {
     align-items: center;
     display: none;
     gap: var(--size-2);
-  font-family: var(--font-mono);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: var(--size-1);
-  text-decoration: none;
-  text-transform: uppercase;
-  color: var(--gray-11);
-  cursor: pointer;
-  border: 3px solid;
-  padding: var(--size-1) var(--size-2);
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  transition: all 0.1s ease;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: var(--size-1);
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--gray-11);
+    cursor: pointer;
+    border: 3px solid;
+    padding: var(--size-1) var(--size-2);
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: all 0.1s ease;
 }
 
 .header__mobile-toggle:active {
-  box-shadow: 0px 0px 0px 0px;
-  transform: translate(5px, 5px);
+    box-shadow: 0px 0px 0px 0px;
+    transform: translate(5px, 5px);
 }
 
 .mobile-toggle__icon--open, .mobile-toggle__icon--close {
@@ -225,6 +300,7 @@ section#start p {
     }
     header {
         display: flex;
+        grid-row: 1 / 2;
         padding: var(--size-2);
         width: 100%;
     }
@@ -234,6 +310,9 @@ section#start p {
         align-items: center;
         width: 100%;
     }
+    main {
+        grid-row: 1 / 3;
+    }
     .logo {
         padding: var(--size-1);
         width: 4rem;
@@ -241,6 +320,7 @@ section#start p {
     .nav__items {
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
         transition: all 0.1s ease;
     
     }
@@ -255,6 +335,7 @@ section#start p {
     }
     .translate-y-0 {
         transform: translateY(0);
+        transition: transform 0.2s ease;
     }
     .translate-y-full {
         display: none;
@@ -262,6 +343,17 @@ section#start p {
     }
     section:not(#start) {
         scroll-margin-block-start: 10rem;
+    }
+    .flex-container {
+        flex-wrap: wrap;
+    }
+    .flex-container > * {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 47em) {
+    section:not(#start) {
+        scroll-margin-block-start: 15rem;
     }
 }
 
